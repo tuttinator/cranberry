@@ -1,3 +1,4 @@
+ENV["RUBY_ENV"] ||= 'test'
 require_relative '../cranberry.rb'
 require 'rspec/autorun'
 
