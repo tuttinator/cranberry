@@ -11,14 +11,7 @@ Cranberry Websocket Game Server
 
 Cranberry is a WebSocket EventMachine-based server, that takes JSON strings as instructions.
 
-To use run:
-
-    bin/cranberry
-
-
-to use the front-end client-side interface, open ``public/index.html``
-
-
+This is not production ready, and still a work in progress. Check back soon!
 
 ## Installation
 
@@ -36,7 +29,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use run:
+
+    bin/cranberry
+
+
+to use the front-end client-side interface, open ``public/index.html``
+
+## Roadmap
+
+0.0.1 stable
+
+[ ] build up spec coverage
+
+[ ] implement a command router for the Websocket onmessage events
+
+[ ] experiment with a DSL for other projects to use the gem with
+
+
+1.0.0
+
+[ ] make it awesome
 
 ## Contributing
 
