@@ -1,23 +1,34 @@
 require 'websocket-eventmachine-server'
 
-port = ENV['cranberry-port'] || 8080
+module Cranberry
 
-EM.run do
+  PORT = ENV['cranberry-port'] || 8080
 
-  WebSocket::EventMachine::Server.start(host: "0.0.0.0", port: port) do |ws|
-    ws.onopen do
-      puts "Client connected"
-      ws.send "Welcome, "
-    end
+  def run
+    EM.run do
 
-    ws.onmessage do |msg, type|
-      puts "Received message: #{msg} | of type #{type}"
-      ws.send msg, type: type
-    end
+      WebSocket::EventMachine::Server.start(host: "0.0.0.0", port: PORT) do |ws|
+        ws.onopen do
+          puts "Client connected"
+          ws.send "Welcome, "
+        end
 
-    ws.onclose do
-      puts "Client disconnected"
+        ws.onmessage do |message, type|
+          puts "Received message: #{message} | of type #{type}"
+          parsed_message = JSON.parse(message)
+          ws.send message, type: type
+        end
+
+        ws.onclose do
+          puts "Client disconnected"
+        end
+      end
+
     end
   end
 
+end
+
+if $PROGRAM_NAME == __FILE__
+  Cranberry.run
 end
