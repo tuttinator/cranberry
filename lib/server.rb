@@ -12,7 +12,7 @@ module Cranberry
 
       WebSocket::EventMachine::Server.start(host: "0.0.0.0", port: PORT) do |ws|
         ws.onopen do
-          puts message.inspect
+          # puts message.inspect # my server wouldn't start with this line uncommented -giles
           puts "Client connected"
           ws.send "Welcome"
         end
