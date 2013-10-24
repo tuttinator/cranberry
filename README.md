@@ -16,4 +16,4 @@ To use
     ruby cranberry.rb
 
 
-open index.html
+to use the front-end client-side interface, open ``public/index.html``
