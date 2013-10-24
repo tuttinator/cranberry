@@ -7,6 +7,9 @@ module Cranberry
   def self.run
     EM.run do
 
+      trap("TERM") { self.stop }
+      trap("INT")  { self.stop }
+
       WebSocket::EventMachine::Server.start(host: "0.0.0.0", port: PORT) do |ws|
         ws.onopen do
           puts "Client connected"
@@ -22,6 +25,21 @@ module Cranberry
         ws.onclose do
           puts "Client disconnected"
         end
+
+      end
+
+      puts Paint[self.banner, :red]
+      puts "-" * 90
+      puts "Cranberry Game Server listening for WebSockets on #{PORT}"
+      puts "-" * 90
+      print "\n\n"
+
+      def self.stop
+        print "\n"
+        puts "-" * 90
+        puts "Terminating WebSocket Server"
+        puts "-" * 90
+        EventMachine.stop
       end
 
     end
