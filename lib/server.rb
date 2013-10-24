@@ -4,7 +4,7 @@ module Cranberry
 
   PORT = ENV['cranberry-port'] || 8080
 
-  def run
+  def self.run
     EM.run do
 
       WebSocket::EventMachine::Server.start(host: "0.0.0.0", port: PORT) do |ws|
@@ -27,8 +27,4 @@ module Cranberry
     end
   end
 
-end
-
-if $PROGRAM_NAME == __FILE__
-  Cranberry.run
 end
