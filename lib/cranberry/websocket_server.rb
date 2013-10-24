@@ -4,8 +4,8 @@ module Cranberry
       ::EM::WebSocket.run(host: Cranberry.configuration[:host], port: Cranberry.configuration[:port]) do |ws|
         ws.onopen do |handshake|
 
-          world = ::Model::World.instance
-          player = ::Model::Players.new(socket_id: handshake.headers["Sec-WebSocket-Key"])
+          world = Cranberry::Models::World.instance
+          player = Cranberry::Models::Player.new(socket_id: handshake.headers["Sec-WebSocket-Key"])
           world.players << player
 
           puts "A new client connected (socket_id: #{player.socket_id})"
