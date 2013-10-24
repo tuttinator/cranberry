@@ -1,19 +1,21 @@
-var socket = new WebSocket('ws://192.168.102.103:8080');
+var socket = new WebSocket('ws://localhost:8080');
+
+
 
 // Open the socket
 socket.onopen = function(event) {
   
   // Send an initial message
-  socket.send('I am the client and I\'m listening!');
+  socket.send(JSON.stringify({'message': 'I am the client and I\'m listening!'}));
   
   // Listen for messages
   socket.onmessage = function(event) {
-    console.log('Client received a message',event);
+    console.log('Client received a message', event);
   };
   
   // Listen for socket closes
   socket.onclose = function(event) {
-    console.log('Client notified socket has closed',event);
+    console.log('Client notified socket has closed', event);
   };
   
   // To close the socket....
