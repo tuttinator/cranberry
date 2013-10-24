@@ -12,14 +12,19 @@ module Cranberry
 
       WebSocket::EventMachine::Server.start(host: "0.0.0.0", port: PORT) do |ws|
         ws.onopen do
+          puts message.inspect
           puts "Client connected"
-          ws.send "Welcome, "
+          ws.send "Welcome"
         end
 
         ws.onmessage do |message, type|
           puts "Received message: #{message} | of type #{type}"
-          parsed_message = JSON.parse(message)
-          ws.send message, type: type
+          parsed_message = begin
+             JSON.parse message
+          rescue JSON::ParserError
+            { message: message }
+          end
+          # ws.send message, type: type
         end
 
         ws.onclose do
