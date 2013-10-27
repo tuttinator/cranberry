@@ -16,6 +16,8 @@ module Cranberry
       console_ui = UI::Console.new(Models::World.instance.grid)
 
       console_ui.draw
+      console_ui.reset_cursor
+      console_ui.draw
 
     end
   end

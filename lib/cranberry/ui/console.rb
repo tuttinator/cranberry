@@ -1,24 +1,32 @@
 module Cranberry
   module UI
+
     class Console
       def initialize(grid)
-        @columns, @rows = grid.columns, grid.rows
+        @grid, @columns, @rows = grid, grid.columns, grid.rows
       end
 
       def draw
-        draw_borders
-        @rows.times.each do |row|
+        print "\n"
+        draw_border
+        @rows.times.each_with_index do |row, row_index|
           print '|'
-          @columns.times.each do |column|
-            print ' '
+          @columns.times.each_with_index do |column, column_index|
+            cell = @grid[row_index][column_index]
+            if cell.nil?
+              print ' '
+            else
+              print 'x'
+            end
           end
           print '|'
           print "\n"
         end
-        draw_borders
+        draw_border
+        reset_cursor
       end
 
-      def draw_borders
+      def draw_border
         print '+'
         @columns.times.each { print '-' }
         print '+'
@@ -26,7 +34,12 @@ module Cranberry
       end
 
       def reset_cursor
-        (@rows + 2).times { print "\r" }
+        # http://stackoverflow.com/questions/14969458/deleting-multiple-lines-of-terminal-output-using-ruby
+        # Where \r moves the cursor to the start of the line, \e[A moves the cursor up one line, and \e[K 
+        # clears from the cursor position to the end of the line. If you don't need anything further down 
+        # the screen, you can also just send \e[J once you have the cursor where you want; that clears 
+        # all the way to the end of the screen.
+        (@rows + 2).times.each { print "\r\e[A" }
       end
     end
   end

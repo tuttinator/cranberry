@@ -11,11 +11,7 @@ module Cranberry
       end
 
       def method_missing(method_name, *args, &block)
-        if @grid.respond_to? method_name
-          @grid.public_send method_name.to_sym, *arg, &block
-        else
-          super
-        end
+        @grid.send method_name, *args, &block
       end
 
     end
