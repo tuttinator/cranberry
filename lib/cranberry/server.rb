@@ -4,7 +4,7 @@ module Cranberry
 
     count = 0
 
-    EM.run do
+    EventMachine.run do
 
       trap("TERM") { self.stop }
       trap("INT")  { self.stop }
