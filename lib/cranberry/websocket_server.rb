@@ -1,7 +1,7 @@
 module Cranberry
   module WebSocketServer
     def self.start
-      ::EM::WebSocket.run(host: Cranberry.configuration[:host], port: Cranberry.configuration[:port]) do |ws|
+      EventMachine::WebSocket.run(host: Cranberry.configuration[:host], port: Cranberry.configuration[:port]) do |ws|
         ws.onopen do |handshake|
 
           world = Cranberry::Models::World.instance

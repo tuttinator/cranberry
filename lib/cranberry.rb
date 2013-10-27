@@ -1,7 +1,12 @@
 # Gem dependencies
-require 'bundler'
-Bundler.require
+require 'bundler/setup'
+Bundler.setup
+require 'eventmachine'
+require 'em-websocket'
+require 'json'
+require 'paint'
 
+# Cranberry files
 require 'cranberry/version'
 require 'cranberry/banner'
 require 'cranberry/configuration'
