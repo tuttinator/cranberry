@@ -17,9 +17,7 @@ module Cranberry
         # Players exist on connection
         @players = []
         # The grid is a matrix - an array of arrays
-        @grid = Array.new(Cranberry.configuration[:rows]) do 
-          Array.new(Cranberry.configuration[:columns])
-        end
+        @grid = Grid.new(Cranberry.configuration[:rows], Cranberry.configuration[:columns])
       end
 
     end
