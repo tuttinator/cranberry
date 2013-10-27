@@ -5,7 +5,7 @@ module Cranberry
         ws.onopen do |handshake|
 
           world = Cranberry::Models::World.instance
-          player = Cranberry::Models::Player.new(socket_id: handshake.headers["Sec-WebSocket-Key"])
+          player = Cranberry::Models::Player.new(socket_id: handshake.headers["Sec-WebSocket-Key"], socket: ws)
           world.players << player
 
           puts "A new client connected (socket_id: #{player.socket_id})"
@@ -24,7 +24,11 @@ module Cranberry
         end
 
         ws.onclose do
-          puts "Client disconnected"
+
+          world = Cranberry::Models::World.instance
+          player = world.players.detect {|a| a.socket.signature == ws.signature}
+          puts "Client #{player.socket_id} disconnected"
+          world.players.delete player
         end
       end
 
