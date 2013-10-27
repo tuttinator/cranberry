@@ -13,6 +13,10 @@ module Cranberry
 
       display_welcome_message
 
+      console_ui = UI::Console.new(Models::World.instance.grid)
+
+      console_ui.draw
+
     end
   end
 
