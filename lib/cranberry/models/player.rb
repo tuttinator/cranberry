@@ -3,6 +3,7 @@ module Cranberry
     class Player
       attr_reader :socket_id, :socket
       attr_accessor :name
+      attr_accessor :x_position, :y_position
       
       def initialize(options = {})
         @socket_id, @socket = options[:socket_id], options[:socket]

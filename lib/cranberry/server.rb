@@ -23,6 +23,7 @@ module Cranberry
   end
 
   def self.stop
+    clear_terminal_screen
     display_termination_message
     EventMachine.stop
   end
