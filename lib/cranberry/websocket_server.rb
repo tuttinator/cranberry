@@ -6,8 +6,7 @@ module Cranberry
         ws.onopen do |handshake|
           world = Cranberry::Models::World.instance
           player = Cranberry::Models::Player.new(socket_id: handshake.headers["Sec-WebSocket-Key"], socket: ws)
-          handshake_message = { handler: 'Handshake', message: player.socket_id }.to_json
-          ws.send handshake_message
+          ws.send({ handler: 'Handshake', message: player.socket_id }.to_json)
           world.players << player
         end
 
