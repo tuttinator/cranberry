@@ -27,4 +27,8 @@ module Cranberry
     puts "-" * 90
   end
 
+  def self.clear_terminal_screen
+    puts "\e[H\e[2J" # this may not be very cross-platform...
+  end
+
 end
