@@ -11,10 +11,8 @@ module Cranberry
 
       WebSocketServer.start
 
-      display_welcome_message
-
       console_ui = UI::Console.new(Models::World.instance.grid)
-
+      UI.display_welcome_message
       console_ui.draw
       console_ui.reset_cursor
       console_ui.draw
@@ -23,8 +21,8 @@ module Cranberry
   end
 
   def self.stop
-    clear_terminal_screen
-    display_termination_message
+    UI.clear_terminal_screen
+    UI.display_termination_message
     EventMachine.stop
   end
 

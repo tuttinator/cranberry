@@ -23,7 +23,6 @@ module Cranberry
           print "\n"
         end
         draw_border
-        reset_cursor
       end
 
       def draw_border
@@ -39,7 +38,7 @@ module Cranberry
         # clears from the cursor position to the end of the line. If you don't need anything further down 
         # the screen, you can also just send \e[J once you have the cursor where you want; that clears 
         # all the way to the end of the screen.
-        (@rows + 2).times.each { print "\r\e[A" }
+        (@rows + 3).times { print "\e[A" }
       end
     end
   end
