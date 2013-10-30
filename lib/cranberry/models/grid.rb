@@ -14,6 +14,9 @@ module Cranberry
         @grid.send method_name, *args, &block
       end
 
+      # TODO: take a splat and count the args length
+      # and use that to determine whether to access
+      # just the inner array, or a co-ordinate of both
       def [](a, b)
         @grid[a][b]
       end
