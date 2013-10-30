@@ -14,6 +14,10 @@ module Cranberry
         @grid.send method_name, *args, &block
       end
 
+      def [](a, b)
+        @grid[a][b]
+      end
+
       def place(player)
         x = rand(@columns)
         y = rand(@rows)
