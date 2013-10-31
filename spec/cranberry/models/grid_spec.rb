@@ -20,4 +20,9 @@ describe Cranberry::Models::Grid do
     expect(@grid[3, 6]).to eq("x")
   end
 
+  it 'places things on the grid' do
+    @grid.place "x"
+    expect(@grid.flatten.compact).to eq(["x"])
+  end
+
 end
