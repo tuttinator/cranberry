@@ -21,13 +21,13 @@ module Cranberry
         @grid[a][b]
       end
 
-      def place(player)
+      def place(thing)
         x = rand(@columns)
         y = rand(@rows)
         if @grid[y][x]
-          place(player)
+          place(thing)
         else
-          @grid[y][x] = player
+          @grid[y][x] = thing
         end
       end
 
