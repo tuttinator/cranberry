@@ -12,7 +12,7 @@ module Cranberry
         @rows.times.each_with_index do |row, row_index|
           print '|'
           @columns.times.each_with_index do |column, column_index|
-            cell = @grid[row_index][column_index]
+            cell = @grid[row_index, column_index]
             if cell.nil?
               print ' '
             else
