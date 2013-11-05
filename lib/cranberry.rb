@@ -26,5 +26,4 @@ module Cranberry
     UI.display_termination_message
     EventMachine.stop
   end
-
 end
