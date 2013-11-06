@@ -11,6 +11,10 @@ module Cranberry
       
       private_class_method :new
 
+      def find_player(socket_id)
+        players.each { |player| return player if player.socket_id == socket_id }
+      end
+
       private
 
       def initialize
