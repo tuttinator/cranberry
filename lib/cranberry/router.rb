@@ -10,7 +10,7 @@ module Cranberry
     rescue JSON::ParserError
       { message: message, handler: 'Log' }
     end
-    Object.const_get("Cranberry::Handlers::#{parsed_message['handler']}").received_message(parsed_message['message'], parsed_message['socket_id'])
+    Cranberry::Handlers.const_get(parsed_message['handler']).received_message(parsed_message['message'], parsed_message['socket_id'])
   end
 
 end
