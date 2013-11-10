@@ -6,8 +6,11 @@ module Cranberry
 
       def initialize(rows, columns)
         @rows, @columns = rows, columns
-        @grid = Array.new(rows) do 
-          Array.new(columns)
+        _self = self
+        @grid = Array.new(rows) do |row|
+          Array.new(columns) do |column|
+            Cell.new({row: row, column: column, grid: _self})
+          end
         end
       end
 
