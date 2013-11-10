@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe Cranberry::Models::World do
+describe Cranberry::Models::Universe do
 
   it "is a singleton instance" do
-    world1, world2 = Cranberry::Models::World.instance, Cranberry::Models::World.instance
+    world1, world2 = Cranberry::Models::Universe.instance, Cranberry::Models::Universe.instance
     expect(world1.object_id).to eq(world2.object_id)
   end
 
   describe "it has a list of players" do
 
     before :each do
-      @world = Cranberry::Models::World.instance
+      @world = Cranberry::Models::Universe.instance
     end
 
     it "is an array" do
@@ -22,7 +22,7 @@ describe Cranberry::Models::World do
   describe "it has a grid" do
 
     before :each do
-      @grid = Cranberry::Models::World.instance.grid
+      @grid = Cranberry::Models::Universe.instance.grid
     end
 
     it "has a grid" do

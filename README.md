@@ -38,7 +38,7 @@ to use the front-end client-side interface, open ``public/index.html``
 
 ## Concepts
 
-### World
+### Universe
 
 All games have at least one 'world'. There may be multiple kinds of gameworld in the future, but this current implementation is of a world with a grid of cells.
 
