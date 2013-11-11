@@ -2,14 +2,14 @@ module Cranberry
   module WebSocketServer
     def self.start
 
-      console_ui = UI::Console.new(Models::World.instance.grid)
+      console_ui = UI::Console.new(Models::Universe.instance.grid)
       UI.display_welcome_message
       console_ui.draw
 
       EventMachine::WebSocket.run(host: Cranberry.configuration[:host], port: Cranberry.configuration[:port]) do |ws|
         
         ws.onopen do |handshake|
-          world = Cranberry::Models::World.instance
+          world = Cranberry::Models::Universe.instance
           player = Cranberry::Models::Player.new(socket_id: handshake.headers["Sec-WebSocket-Key"], socket: ws)
           ws.send({ handler: 'Handshake', message: player.socket_id }.to_json)
           world.grid.place player
@@ -25,7 +25,7 @@ module Cranberry
         end
 
         ws.onclose do
-          world = Cranberry::Models::World.instance
+          world = Cranberry::Models::Universe.instance
           player = world.players.detect {|a| a.socket.signature == ws.signature}
           world.players.delete player
         end

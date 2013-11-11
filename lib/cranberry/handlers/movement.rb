@@ -5,12 +5,12 @@ module Cranberry
       def self.received_message(direction, socket_id)
         player = world.find_player(socket_id)
         grid.move(player, :"#{direction}")
-        UI::Console.new(Models::World.instance.grid).draw
+        UI::Console.new(Models::Universe.instance.grid).draw
         puts "#{player.name} moved #{direction}"
       end
 
       def self.world
-        Cranberry::Models::World.instance
+        Cranberry::Models::Universe.instance
       end
 
       def self.grid

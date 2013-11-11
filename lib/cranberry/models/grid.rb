@@ -2,11 +2,15 @@ module Cranberry
   module Models
     class Grid
       attr_reader :rows, :columns
+      # has_many cells
 
       def initialize(rows, columns)
         @rows, @columns = rows, columns
-        @grid = Array.new(rows) do 
-          Array.new(columns)
+        _self = self
+        @grid = Array.new(rows) do |row|
+          Array.new(columns) do |column|
+            Cell.new({row: row, column: column, grid: _self})
+          end
         end
       end
 
@@ -14,11 +18,10 @@ module Cranberry
         @grid.send method_name, *args, &block
       end
 
-      # TODO: take a splat and count the args length
-      # and use that to determine whether to access
-      # just the inner array, or a co-ordinate of both
-      def [](a, b)
-        @grid[a][b]
+      def [](*coordinates)
+        raise 'Requires at least one coordinate' if coordinates.length == 0
+        y, x = coordinates
+        x.nil? ? @grid[y] : @grid[y][x]
       end
 
       def place(thing)
