@@ -1,6 +1,6 @@
 module Cranberry
   module Models
-    class World
+    class Universe
       attr_accessor :players
       attr_reader :grid
 
