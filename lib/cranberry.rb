@@ -14,16 +14,8 @@ end
 # Main entrypoint
 module Cranberry
   def self.run
-    EventMachine.run do
-      trap("TERM") { self.stop }
-      trap("INT")  { self.stop }
-      WebSocketServer.start
-    end
+    game_server = Cranberry::GameServer.new
+    game_server.run
   end
 
-  def self.stop
-    UI.clear_terminal_screen
-    UI.display_termination_message
-    EventMachine.stop
-  end
 end

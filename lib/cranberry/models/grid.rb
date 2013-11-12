@@ -27,10 +27,10 @@ module Cranberry
       def place(thing)
         x = rand(@columns)
         y = rand(@rows)
-        if @grid[y][x]
+        if @grid[y][x].contents
           place(thing)
         else
-          @grid[y][x] = thing
+          @grid[y][x].contents = thing
         end
       end
 
