@@ -13,7 +13,7 @@ module Cranberry
           print '|'
           @columns.times.each_with_index do |column, column_index|
             cell = @grid[row_index, column_index]
-            if cell.nil?
+            if cell.contents.nil?
               print ' '
             else
               print 'x'

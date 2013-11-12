@@ -7,22 +7,15 @@ module Cranberry
 
         @columns   ||= options[:columns]
         @rows      ||= options[:rows]
-        @start_x     = rand(@columns)
-        @start_y     = 0
-        @end_x       = rand(@columns)
-        @end_y       = @rows - 1
      
         # Which walls do exist? Default to "true". Both arrays are
         # one element bigger than they need to be. For example, the
         # @vertical_walls[x][y] is true if there is a wall between
         # (x,y) and (x+1,y). The additional entry makes printing easier.
-        @vertical_walls   = Array.new(columns) { Array.new(rows, true) }
-        @horizontal_walls = Array.new(columns) { Array.new(rows, true) }
+        @vertical_walls   = Array.new(@columns + 1) { Array.new(@rows, true) }
+        @horizontal_walls = Array.new(@columns + 1) { Array.new(@rows, true) }
         # Path for the solved maze.
-        @path             = Array.new(columns) { Array.new(rows) }
-     
-        # "Hack" to print the exit.
-        @horizontal_walls[@end_x][@end_y] = false
+        @path             = Array.new(@columns + 1) { Array.new(@rows) }
      
         # Generate the maze.
         generate_maze
@@ -31,7 +24,7 @@ module Cranberry
       # Print a nice ASCII maze.
       def print_maze
         # Special handling: print the top line.
-        puts @columns.times.inject("+") {|str, x| str << (x == @start_x ? "   +" : "---+")}
+        puts @columns.times.inject("+") {|str, x| str << "---+" }
      
         # For each cell, print the right and bottom wall, if it exists.
         @rows.times do |y|
@@ -58,7 +51,7 @@ module Cranberry
       # Generate the maze.
       def generate_maze
         reset_visiting_state
-        generate_visit_cell(@start_x, @start_y)
+        generate_visit_cell(0, 0)
       end
      
       # Depth-first maze generation.

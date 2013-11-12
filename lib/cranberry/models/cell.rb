@@ -1,12 +1,15 @@
 module Cranberry
   module Models
     class Cell
+      attr_accessor :contents
+
       # belongs_to the grid
       def initialize(options)
         @row, @column = options[:row], options[:column]
         # Include a reference to the grid for the Cell
         # instance to know about it's neighbours
         @grid = options[:grid]
+        @contents = nil
       end
 
       # Neighbours
