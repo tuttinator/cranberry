@@ -8,7 +8,7 @@ All games have at least one 'universe'. There may be multiple kinds of gameworld
 
 The grid has a width and height, and contains a set of cells. Each cell can have up to three walls, but not four - as four walls would make it inaccessible.
 
-Walls are procedurally generated on initialisation, but they don't have to be immutable, and stored as edges within the Grid class singleton instance with 
+Walls are procedurally generated on initialisation, but they don't have to be immutable, and stored as edges within the Grid class singleton instance. 
 
 Players move between cells, but cannot move through a wall. A player's X, Y co-ordinate position will be within a discrete cell at all times.
 
