@@ -3,8 +3,11 @@ require 'spec_helper'
 describe 'the command line interface' do
 
   it 'should boot' do
-    expect(Cranberry.run).to_not raise_error
-    Cranberry.stop
+    expect do
+      Thread.new do
+        Cranberry.run
+      end
+    end.to_not raise_error
   end
 
 end
